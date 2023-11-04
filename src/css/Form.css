@@ -14,14 +14,19 @@ form{
     width: 80%;
     max-width: 500px;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: #393e46;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    
+
 }
 
 form input{
-    margin: 10px 0;
-    padding: 10px 10px;
+    margin: 10px auto;
+    padding: 10px 0;
     border: none;
     border-radius: 5px;
+    display: block;
     width: 100%;
     font-size: 16px;
 
@@ -47,15 +52,12 @@ form label{
     border: none;
     width: 100%;
     font-size: 16px;
+    font-weight: bold;
 }
 
 .category {
-   width: 100%;
-   margin: 20px; 
-}
-form .repeat-checkbox{
-    width: fit-content;
-    margin-right: 10px;
+    width: 100%;
+    padding: 10px;
 }
 form select{
     display: block;
@@ -70,4 +72,21 @@ option{
 .success-message{
     
     text-align: center;
+}
+.try-again-button{
+    margin: 10px 0;
+        padding: 10px;
+        border-color: white;
+        border-radius: 5px;
+        background-color: #222831;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+}
+.success-icon{
+    width: 50px;
+}
+.error-icon{
+    width: 50px;
 }
