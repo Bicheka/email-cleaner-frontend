@@ -5,6 +5,12 @@ import '../css/Form.css';
 // Loading icon
 import Loading from "./Loading";
 
+// success icon
+import sucessIcon from "../assets/success.svg";
+
+// error icon
+import errorIcon from "../assets/error.svg";
+
 const Form = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -103,7 +109,7 @@ const Form = () => {
                         // Render the Loading component within this block
                         <div>
                             <h2>Success!</h2>
-                            <img className="success-icon" src="../public/success.svg" alt="Success" />
+                            <img className="success-icon" src={sucessIcon} alt="Success" />
                             <p>{message}.</p>
                             
                             <button className="try-again-button" onClick={() => handleReset()}>Again?</button>
@@ -113,7 +119,7 @@ const Form = () => {
                     ) : formSubmissionStatus === "error" ? (
                         <div className="error-message">
                             <h2>Error!</h2>
-                            <img className="error-icon" src="../public/error.svg" alt="Error" />
+                            <img className="error-icon" src={errorIcon} alt="Error" />
                             <p>{error} Please try again</p>
                             <button className="try-again-button" onClick={() => handleReset()}>Try Again</button>
                         </div>
