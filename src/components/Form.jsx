@@ -21,7 +21,7 @@ const Form = () => {
         setIsSubmittingForm(false); // Set isSubmittingForm to true when the form is submitted
 
         try {
-            const response = await axios.post("http://localhost:8000/clear", {
+            const response = await axios.post("https://email-cleaner.onrender.com/clear", {
                 email: email,
                 password: password,
             });
