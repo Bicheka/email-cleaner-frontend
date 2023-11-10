@@ -33,14 +33,6 @@ form input{
 
 }
 
-form .buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    width: 100%;
-
-}
-
 form button{
     margin: 10px 10px;
     padding: 10px;
@@ -98,4 +90,14 @@ option{
 }
 .error-icon{
     width: 50px;
+}
+
+/* on mobiles */
+@media screen and (max-width: 600px) {
+    .form-container{
+        max-width: 90%;
+        margin: auto;
+        padding: 20px;
+    }
+
 }

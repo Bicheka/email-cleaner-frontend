@@ -21,8 +21,6 @@ const Form = () => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(""); // Added error state
 
-    const [buttonClicked, setButtonClicked] = useState(""); // Added buttonClicked state
-
 
     const sendRequest= async (address) => {
 
@@ -61,19 +59,12 @@ const Form = () => {
         }
     }
 
-    const handleClear = async (e) => {
-        e.preventDefault();
 
-        setButtonClicked("clear");
-        sendRequest("clear");
-        
-    }
 
     const handleRegister = async (e) => {
 
         e.preventDefault();
 
-        setButtonClicked("register");
         sendRequest("register");
         
     }
@@ -119,8 +110,6 @@ const Form = () => {
                         />
                     </div>
                     <div className="buttons">
-                        <button onClick={handleClear}>Clear Emails</button>
-                        <p>OR</p>
                         <button onClick={handleRegister}>Register</button>
                     </div>
                 </form>
@@ -132,26 +121,11 @@ const Form = () => {
                     {formSubmissionStatus === "success" ? (
                         // Render the Loading component within this block
                         <div>
-                            {
-                                buttonClicked === "clear" ? (
-                                    <div>
-                                        <h2>Success!</h2>
-                                        <img className="success-icon" src={sucessIcon} alt="Success" />
-                                        <p>{message}.</p>
-                                        
-                                        <button className="try-again-button" onClick={() => handleReset()}>Again?</button>
-                                    </div>
-                                ) : (
-                                    <div>
-                                        <h2>Success!</h2>
-                                        <img className="success-icon" src={sucessIcon} alt="Success" />
-                                        <p>You were succefully registered and your emails will be deleted every 3 hours</p>
-                                        
-                                        <button className="try-again-button" onClick={() => handleReset()}>Register More</button>
-                                    </div>
-                                )
-                            }
+                            <h2>Success!</h2>
+                            <img className="success-icon" src={sucessIcon} alt="Success" />
+                            <p>{message}</p>
                             
+                            <button className="try-again-button" onClick={() => handleReset()}>Register More</button>
                         </div>
             
                     ) : formSubmissionStatus === "error" ? (
