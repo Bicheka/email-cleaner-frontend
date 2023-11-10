@@ -33,8 +33,16 @@ form input{
 
 }
 
+form .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    width: 100%;
+
+}
+
 form button{
-    margin: 10px 0;
+    margin: 10px 10px;
     padding: 10px;
     border-color: white;
     border-radius: 5px;
