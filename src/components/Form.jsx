@@ -36,22 +36,12 @@ const Form = () => {
             setMessage(response.data.message);
             setFormSubmissionStatus("success"); // Set form submission status to success
         } catch (error) {
-            
+
+            console.log(error);
+            setError(error.response.data.detail);
+
             setResponse(error);
 
-            // Set error message based on the status code
-            if (error.response.status === 401) {
-                setError("Invalid credentials.");
-            }
-            else if (error.response.status === 422) {
-                setError("Invalid email address.");
-            }
-            else if (error.response.status === 500) {
-                setError("An internal server error occurred.");
-            }
-            else {
-                setError("An error occurred.");
-            }
             setFormSubmissionStatus("error"); // Set form submission status to error
 
         } finally {
