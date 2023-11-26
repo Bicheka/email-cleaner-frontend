@@ -22,36 +22,17 @@ const Form = () => {
     const [error, setError] = useState(""); // Added error state
 
 
-    const request = async (address) => {
-        if (address === "register") {
-            try {
-                const response = await axios.post(`https://email-cleaner.onrender.com/${address}`, {
-                    email: email,
-                    password: password,
-                });
-                return response;
-            } catch (error) {
-                console.log(error);
-            }
-        } else if (address === "unregister") {
-            try {
-                const response = await axios.delete(`https://email-cleaner.onrender.com/${address}`, {
-                    email: email,
-                    password: password,
-                });
-                return response;
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }
+    const handleRegister = async (e) => {
 
-    const sendRequest= async (address) => {
+        e.preventDefault();
 
         setIsSubmittingForm(false); // Set isSubmittingForm to true when the form is submitted
 
         try {
-            const response = await request(address);
+            const response = await axios.post(`https://email-cleaner.onrender.com/register`, {
+                    email: email,
+                    password: password,
+                });
             console.log(response);
             setResponse(response);
             setMessage(response.data.message);
@@ -70,24 +51,34 @@ const Form = () => {
         }
     }
 
-    
-
-    const handleRegister = async (e) => {
-
-        e.preventDefault();
-
-        sendRequest("register");
-        
-    }
-
     const handleUnregister = async (e) => {
 
         e.preventDefault();
 
-        sendRequest("unregister");
+        setIsSubmittingForm(false); // Set isSubmittingForm to true when the form is submitted
 
+        try {
+            const response = await axios.post(`https://email-cleaner.onrender.com/unregister`, {
+                    email: email,
+                    password: password,
+                });
+            console.log(response);
+            setResponse(response);
+            setMessage(response.data.message);
+            setFormSubmissionStatus("success"); // Set form submission status to success
+        } catch (error) {
+
+            console.log(error);
+            setError(error.response.data.detail);
+
+            setResponse(error);
+
+            setFormSubmissionStatus("error"); // Set form submission status to error
+
+        } finally {
+            setIsSubmittingForm(false); // Set isSubmittingForm to false after the response is received
+        }
     }
-
 
     const handleReset = () => {
         setEmail("");
