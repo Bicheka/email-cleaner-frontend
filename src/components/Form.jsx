@@ -58,10 +58,15 @@ const Form = () => {
         setIsSubmittingForm(false); // Set isSubmittingForm to true when the form is submitted
 
         try {
-            const response = await axios.delete(`https://email-cleaner.onrender.com/unregister`, {
+            const response = await axios.delete("https://email-cleaner.onrender.com/unregister", {
+                data: {
                     email: email,
                     password: password,
-                });
+                },
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
             console.log(response);
             setResponse(response);
             setMessage(response.data.message);
