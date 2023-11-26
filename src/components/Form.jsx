@@ -22,15 +22,36 @@ const Form = () => {
     const [error, setError] = useState(""); // Added error state
 
 
+    const request = async (address) => {
+        if (address === "register") {
+            try {
+                const response = await axios.post(`https://email-cleaner.onrender.com/${address}`, {
+                    email: email,
+                    password: password,
+                });
+                return response;
+            } catch (error) {
+                console.log(error);
+            }
+        } else if (address === "unregister") {
+            try {
+                const response = await axios.delete(`https://email-cleaner.onrender.com/${address}`, {
+                    email: email,
+                    password: password,
+                });
+                return response;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
     const sendRequest= async (address) => {
 
         setIsSubmittingForm(false); // Set isSubmittingForm to true when the form is submitted
 
         try {
-            const response = await axios.post(`https://email-cleaner.onrender.com/${address}`, {
-                email: email,
-                password: password,
-            });
+            const response = await request(address);
             console.log(response);
             setResponse(response);
             setMessage(response.data.message);
@@ -49,7 +70,7 @@ const Form = () => {
         }
     }
 
-
+    
 
     const handleRegister = async (e) => {
 
@@ -57,6 +78,14 @@ const Form = () => {
 
         sendRequest("register");
         
+    }
+
+    const handleUnregister = async (e) => {
+
+        e.preventDefault();
+
+        sendRequest("unregister");
+
     }
 
 
@@ -100,8 +129,10 @@ const Form = () => {
                         />
                     </div>
                     <div className="buttons">
-                        <button onClick={handleRegister}>Register</button>
+                        <button className="register" onClick={handleRegister}>Register</button>
+                        <button className="unregister" onClick={handleUnregister}>Unregister</button>
                     </div>
+                    
                 </form>
             ) : (
                 loading ? (

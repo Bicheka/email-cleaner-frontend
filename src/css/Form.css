@@ -43,7 +43,14 @@ form button{
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+}
 
+form .buttons .register{
+    border-color: #08D9D6;
+}
+
+form .buttons .unregister {
+    border-color: #FF2E63;
 }
 
 form label{
